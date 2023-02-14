@@ -145,7 +145,6 @@ class Controller:
         pass
 
     # Instantiate the window Classes per method from now on, bind the windows to individual signals and show the window
-    # TODO: figure out how to close the old window when navigating towards the first window from second, third, or whatever
 
     def show_main_window(self):
         self.main_window = MainWindow()
@@ -153,13 +152,13 @@ class Controller:
         self.main_window.switch_third.connect(self.show_third_window)
         self.main_window.show()
 
-        second_window = SecondWindow()
-        if second_window.isVisible():
-            second_window.hide()
+        self.second_window = SecondWindow()
+        if self.second_window.isVisible():
+            self.second_window.hide()
 
-        third_window = ThirdWindow()
-        if third_window.isVisible():
-            third_window.hide()
+        self.third_window = ThirdWindow()
+        if self.third_window.isVisible():
+            self.third_window.hide()
 
     def show_second_window(self):
         self.second_window = SecondWindow()
