@@ -145,6 +145,7 @@ class Controller:
         pass
 
     # Instantiate the window Classes per method from now on, bind the windows to individual signals and show the window
+    # TODO: figure out how to close the old window when navigating towards the first window from second, third, or whatever
 
     def show_main_window(self):
         self.main_window = MainWindow()
