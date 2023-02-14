@@ -147,24 +147,46 @@ class Controller:
     # Instantiate the window Classes per method from now on, bind the windows to individual signals and show the window
 
     def show_main_window(self):
-        self.window = MainWindow()
-        self.window.switch_second.connect(self.show_second_window)
-        self.window.switch_third.connect(self.show_third_window)
-        self.window.show()
+        self.main_window = MainWindow()
+        self.main_window.switch_second.connect(self.show_second_window)
+        self.main_window.switch_third.connect(self.show_third_window)
+        self.main_window.show()
+
+        second_window = SecondWindow()
+        if second_window.isVisible():
+            second_window.hide()
+
+        third_window = ThirdWindow()
+        if third_window.isVisible():
+            third_window.hide()
 
     def show_second_window(self):
         self.second_window = SecondWindow()
         self.second_window.switch_first.connect(self.show_main_window)
         self.second_window.switch_third.connect(self.show_third_window)
-        self.window.close()
         self.second_window.show()
 
+        self.main_window = MainWindow()
+        if self.main_window.isVisible():
+            self.main_window.hide()
+
+        self.third_window = ThirdWindow()
+        if self.third_window.isVisible():
+            self.third_window.hide()
+
     def show_third_window(self):
-        self.second_window = ThirdWindow()
-        self.second_window.switch_first.connect(self.show_main_window)
-        self.second_window.switch_second.connect(self.show_second_window)
-        self.second_window.close()
-        self.second_window.show()
+        self.third_window = ThirdWindow()
+        self.third_window.switch_first.connect(self.show_main_window)
+        self.third_window.switch_second.connect(self.show_second_window)
+        self.third_window.show()
+
+        self.main_window = MainWindow()
+        if self.main_window.isVisible():
+            self.main_window.hide()
+
+        self.second_window = SecondWindow()
+        if self.second_window.isVisible():
+            self.second_window.hide()
 
 
 # Create the main application, initialize and build
